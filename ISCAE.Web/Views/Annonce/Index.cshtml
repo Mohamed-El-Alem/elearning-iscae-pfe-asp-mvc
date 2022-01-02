@@ -1,0 +1,110 @@
+﻿@using ISCAE.Data
+@{
+    ViewBag.Title = "Annonces";
+    if(Session["user"] is Etudiant)
+    {
+        Layout = "~/Views/Shared/_EtudiantLayout.cshtml";
+    }
+    else if (Session["user"] is Professeur)
+    {
+        Layout = "~/Views/Shared/_ProfesseurLayout.cshtml";
+    }
+    else if (Session["user"] is Administrateur)
+    {
+        Layout = "~/Views/Shared/_AdministrateurLayout.cshtml";
+    }
+
+    List<Annonce> Avis = (List<Annonce>)ViewBag.Avis;
+    List<Resultat> Resultats = (List<Resultat>)ViewBag.Resultats;
+    List<Specialite> Specialites = (List<Specialite>)ViewBag.Specialites;
+}
+
+<div class="row">
+    <!-- Left col -->
+    <div class="col-md-6">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Avis</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-footer no-padding">
+                <ul class="nav nav-pills nav-stacked">
+                    @{
+                        if (Avis.Count > 0)
+                        {
+                            foreach (Annonce annonce in Avis)
+                            {
+                                if (annonce.Titre.Equals("directeur")) { continue; }
+                                <li>
+                                    <a href='@Url.Action("Avis","Annonce", new {id = annonce.AnnonceId })'>
+                                        @annonce.Titre
+                                        <small class="pull-right">@String.Format("{0:dd-MM-yyyy} à {0:H:mm}", annonce.DateAjout)</small>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#">Pas des Avis</a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+            <!-- /.footer -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="col-md-6">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultats</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-footer no-padding">
+                <ul class="nav nav-pills nav-stacked">
+                    @{
+                        if (Resultats.Count > 0)
+                        {
+                            foreach (Resultat resultat in Resultats)
+                            {
+                                <li>
+                                    <a href='@Url.Action("Download","Annonce",new { id = resultat.ResultatId})'>
+                                        <span class="fa fa-download"></span> @resultat.Path.Remove(0,22)
+                                        <span class="label label-success pull-right">@Specialites.Find(o => o.SpecialiteId == resultat.SpecialiteId).Designation</span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#">Pas des Resultats</a>
+                                
+                            </li>
+                        }
+                    }
+
+                </ul>
+            </div>
+            <!-- /.footer -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->

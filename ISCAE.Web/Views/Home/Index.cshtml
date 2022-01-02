@@ -1,0 +1,167 @@
+﻿@using ISCAE.Data
+@{ 
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Accueil";
+    int etudiants = 0;//ViewBag.etudiants;
+    int graduates = 0; //ViewBag.graduates;
+    int professeurs = 0; //ViewBag.professeurs;
+    List<Specialite> specialites = ViewBag.specialites;
+    Annonce directeur = ViewBag.directeur;
+    int modules = 0; // ViewBag.modules;
+}
+
+
+<aside id="fh5co-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style="background-image: url(@Url.Content("~/Content/img/iscae_1.jpg") );">
+                <div class="overlay-gradient"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <h1>Institut Supérieur  de Comptabilité et d'Administration des Entreprises</h1>
+                                
+                                <p><a class="btn btn-success btn-lg" href="#">A propos</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="background-image: url(@Url.Content("~/Content/img/iscae_2.jpg") );">
+                <div class="overlay-gradient"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <h1>المعهد العالي للمحاسبة وادارة المؤسسات</h1>
+                                <p><a class="btn btn-success btn-lg btn-learn" href="#">حول المعهد</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="background-image: url(@Url.Content("~/Content/img/iscae_3.jpg") );">
+                <div class="overlay-gradient"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <h1>Si vous ete un nouveau etudiant vous pouvez activer votre compte en cliquant ici</h1>
+                                <p><a class="btn btn-success btn-lg btn-learn" href="#">Activer votre compte</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div id="fh5co-course">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2>La direction</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 animate-box">
+                <div class="course">
+                    <a href="#" class="course-img" style="background-image: url(@Url.Content("~/Content/img/directeur.jpg"));">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Directeur</a></h3>
+                       
+                        <span><a href="@Url.Action("Directeur","Home")" class="btn btn-success btn-sm btn-course">Detaille</a></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 animate-box">
+                <div class="course">
+                    <a href="#" class="course-img" style="background-image: url(@Url.Content("~/Content/img/logo_big.png"));">
+                    </a>
+                    <div class="desc">
+                        <h3><a>L'institut</a></h3>
+                        <p>Sur rapport conjoint du Ministre des Affaires Economiques et du Développement, du Ministre des Finances, du Ministre de l'Education Nationale et du Ministre de la Fonction publique et de l'Emploi;</p>
+                        <p> Vu la Constitution du 20 juillet 1991, rétablie et modifiée aux termes de la loi constitutionnelle nOO14-2006.....</p>
+                        <span><a href="#" class="btn btn-success btn-sm btn-course">Télécharger PDF</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fh5co-counter" class="fh5co-counters" style="background-image: url(@Url.Content("~/Content/home/images/counter.jpeg"));" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4 text-center animate-box">
+                        <span class="icon"><i class="fa fa-institution"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@specialites.Count" data-speed="1000" data-refresh-interval="50"></span>
+                        <span class="fh5co-counter-label">Specialités</span>
+                    </div>
+                    <div class="col-md-2 col-sm-4 text-center animate-box">
+                        <span class="icon"><i class="fa fa-graduation-cap"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@graduates" data-speed="1000" data-refresh-interval="5"></span>
+                        <span class="fh5co-counter-label">Graduation</span>
+                    </div>
+                    <div class="col-md-4 col-sm-4 text-center animate-box">
+                        <span class="icon"><i class="fa fa-group"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@etudiants" data-speed="1000" data-refresh-interval="5"></span>
+                        <span class="fh5co-counter-label">Etudiants</span>
+                    </div>
+                    <div class="col-md-2 col-sm-6 text-center animate-box">
+                        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@modules" data-speed="1000" data-refresh-interval="5"></span>
+                        <span class="fh5co-counter-label">Modules</span>
+                    </div>
+                    <div class="col-md-2 col-sm-6 text-center animate-box">
+                        <span class="icon"><i class="fa fa-suitcase"></i></span>
+                        <span class="fh5co-counter js-counter" data-from="0" data-to="@professeurs" data-speed="1000" data-refresh-interval="5"></span>
+                        <span class="fh5co-counter-label">Professeurs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fh5co-course-categories">
+    <div id="formation" class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2>Specialités</h2>
+                <p>Les spécialités suivantes sont ouvertes :</p>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                foreach (Specialite specialite in specialites)
+                {
+                    <div class="col-md-3 col-sm-6 text-center animate-box">
+                        <div class="services">
+                            <span class="icon">
+                                <i>@specialite.Abreviation</i>
+                            </span>
+                            <div class="desc">
+                                <h3><a href="#">@specialite.Designation</a></h3>
+                                
+                            </div>
+                        </div>
+                    </div>
+                }
+            }   
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $("#formation-link").click(function () {
+            $('html, body').animate({
+                scrollTop: $("#formation").offset().top
+            }, 2000);
+        });
+    </script>
+    }

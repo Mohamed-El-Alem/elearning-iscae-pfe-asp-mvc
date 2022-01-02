@@ -1,0 +1,49 @@
+﻿@model Annonce
+@using ISCAE.Data
+@{
+    ViewBag.Title = "Avis";
+    if (Session["user"] is Etudiant)
+    {
+        Layout = "~/Views/Shared/_EtudiantLayout.cshtml";
+    }
+    else if (Session["user"] is Professeur)
+    {
+        Layout = "~/Views/Shared/_ProfesseurLayout.cshtml";
+    }
+    else if (Session["user"] is Administrateur)
+    {
+        Layout = "~/Views/Shared/_AdministrateurLayout.cshtml";
+    }
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">AVIS</h3>
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div class="mailbox-read-info">
+                    <h3>@Model.Titre</h3>
+                    <h5>
+                        <span class="mailbox-read-time pull-right">@String.Format("{0:dd-MM-yyyy} à {0:H:mm}", Model.DateAjout)</span>
+                    </h5>
+                </div>
+
+                <!-- /.mailbox-controls -->
+                <div class="mailbox-read-message">
+                        @Html.Raw(Model.Contenu)
+                </div>
+                <!-- /.mailbox-read-message -->
+            </div>
+            <!-- /.box-body -->
+
+
+        </div>
+        <!-- /. box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->

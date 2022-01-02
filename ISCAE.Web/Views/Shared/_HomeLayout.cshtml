@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ISCAE - @ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @Styles.Render("~/Content/home")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div class="fh5co-loader"></div>
+
+    <div id="page">
+        <nav class="fh5co-nav" role="navigation">
+            
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="fh5co-logo"><a href="@Url.Action("Index","Home")"><i><img src="~/Content/img/logo.png" /></i>ISCAE<span>.</span></a></div>
+                        </div>
+                        <div class="col-xs-10 text-right menu-1">
+                            <ul>
+                                <li><a href="@Url.Action("Index","Home")">Accueil</a></li>
+                                <li><a href="@Url.Action("Professeurs", "Home")">Professeurs</a></li>
+                                <li><a href="@Url.Action("Avis","Home")">Avis</a></li>
+                                <li><a href="@Url.Action("Directeur", "Home")">Mot du directeur</a></li>
+                                @{
+                                    if (ViewBag.Title == "Accueil")
+                                    {
+                                        <li><a href="#formation" id="formation-link">Formations</a></li>
+                                    }
+
+                                }
+                                <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                <li class="btn-cta has-dropdown">
+                                    <a href="#"><span>Login</span></a>
+                                    <ul class="dropdown">
+                                        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @id = "login_form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                <!-- Menu Body -->
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-sm-push-1 col-sm-pull-1 col-sm-10 form-group">
+                                                        <input type="text" class="form-control" id="username" name="login" placeholder="Username">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-sm-push-1 col-sm-pull-1 col-sm-10 form-group">
+                                                        <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="row">
+                                                    <div class="col-sm-push-1 col-sm-pull-1 col-sm-10 checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> Remember me
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                                    
+                            <!-- Menu Footer-->
+                                            <li>
+
+                                                
+                                                <div>
+                                                    <i class="" id="loading"></i>
+                                                    <input type="submit" id="connecter-btn" class="btn btn-success btn-flat" value="Connecter" />
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                                <li class="btn-cta">
+                                <a href="@Url.Action("Register","Home")"><span>Nouveau étudiant?</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+        @RenderBody()
+        <footer id="fh5co-footer" role="contentinfo" style="background-image: url(images/img_bg_4.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row row-pb-md">
+                    <div class="col-md-3 fh5co-widget">
+                        <h3>A propos</h3>
+                        <p>L'Institut Supérieur  de Comptabilité et d'Administration des Entreprises.</p>
+                    </div>
+                    <div class="col-md-9 fh5co-widget">
+                        <p>
+                            <small class="block">&copy; @DateTime.Now.Year ISCAE. All Rights Reserved.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+        
+       
+    @Scripts.Render("~/bundles/home")
+    @RenderSection("scripts", required: false)
+    
+    <script type="text/javascript">
+        $(".nav-link").hover(function () {
+            $('.line').show();
+        }, function () {
+            $('.line').hide();
+        });
+    </script>
+</body>
+</html>
